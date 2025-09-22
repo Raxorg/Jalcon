@@ -2,10 +2,20 @@ package com.epicness.jalcon;
 
 import com.badlogic.gdx.Game;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class JalconGame extends Game {
+
+    private Renderer renderer;
+
     @Override
     public void create() {
-        setScreen(new FirstScreen());
+        renderer = new Renderer();
+        Stuff stuff = new Stuff();
+
+        renderer.setStuff(stuff);
+    }
+
+    @Override
+    public void render() {
+        renderer.render();
     }
 }

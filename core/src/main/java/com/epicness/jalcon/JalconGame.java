@@ -1,6 +1,7 @@
 package com.epicness.jalcon;
 
 import com.badlogic.gdx.Game;
+import com.epicness.jalcon.stuff.Stuff;
 
 public class JalconGame extends Game {
 

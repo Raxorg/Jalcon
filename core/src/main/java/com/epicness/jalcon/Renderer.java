@@ -5,8 +5,8 @@ import static com.badlogic.gdx.graphics.Color.BLACK;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.epicness.jalcon.stuff.Stuff;
 
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
@@ -27,9 +27,8 @@ public class Renderer {
         ScreenUtils.clear(BLACK);
 
         spriteBatch.begin();
-        for (int i = 0; i < stuff.circles.size; i++) {
-            Circle circle = stuff.circles.get(i);
-            shapeDrawer.circle(circle.x, circle.y, circle.radius);
+        for (int i = 0; i < stuff.planets.size; i++) {
+            stuff.planets.get(i).draw(shapeDrawer);
         }
         spriteBatch.end();
     }

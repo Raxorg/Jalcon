@@ -8,7 +8,11 @@ import space.earlygrey.shapedrawer.ShapeDrawer;
 
 public class Planet {
 
-    private final Circle circle;
+    public final Circle circle;
+
+    public Planet(Circle circle) {
+        this.circle = circle;
+    }
 
     public Planet(float x, float y, float radius) {
         circle = new Circle(x, y, radius);

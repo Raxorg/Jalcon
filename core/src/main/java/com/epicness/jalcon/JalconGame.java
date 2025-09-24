@@ -11,8 +11,12 @@ public class JalconGame extends Game {
     public void create() {
         renderer = new Renderer();
         Stuff stuff = new Stuff();
+        Logic logic = new Logic();
 
+        logic.setStuff(stuff);
         renderer.setStuff(stuff);
+
+        logic.spawnPlanets();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.epicness.fundamentals.logic.Logic;
 public class GameLogic extends Logic {
 
     public GameLogic() {
+        registerHandler(new CameraHandler());
         registerHandler(new PlanetSpawner());
         registerHandler(new InitCoordinator()); // Always register at the end
     }

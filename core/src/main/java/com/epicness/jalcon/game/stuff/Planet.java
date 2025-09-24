@@ -1,5 +1,7 @@
 package com.epicness.jalcon.game.stuff;
 
+import static com.badlogic.gdx.graphics.Color.CLEAR;
+
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.epicness.fundamentals.rendering.ShapeDrawerPlus;
@@ -14,8 +16,9 @@ public class Planet implements Drawable2D {
     private final Text shipCount;
     private int ships;
 
-    public Planet(CirclePlus circle, BitmapFont font) {
-        this.circle = circle;
+    public Planet(CirclePlus circlePlus, BitmapFont font) {
+        circle = circlePlus;
+        circle.setFillColor(CLEAR);
         shipCount = new Text(font);
     }
 

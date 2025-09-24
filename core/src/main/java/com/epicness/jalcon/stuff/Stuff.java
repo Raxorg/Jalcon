@@ -1,6 +1,6 @@
 package com.epicness.jalcon.stuff;
 
-import static com.epicness.jalcon.Constants.PLANET_INNER_THICKNESS;
+import static com.epicness.jalcon.Constants.PLANET_HALF_THICKNESS;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
@@ -13,23 +13,30 @@ public class Stuff {
     public Stuff() {
         planets = new SnapshotArray<>();
 
-        float offset = PLANET_INNER_THICKNESS;
         for (int i = 0; i < 25; i++) {
+            spawnPlanet();
+        }
+    }
+
+    private void spawnPlanet() {
+        Circle circle;
+        boolean overlaps;
+        do {
             float radius = MathUtils.random(10f, 50f);
-            float x = MathUtils.random(radius + offset, 1200f - radius - offset);
-            float y = MathUtils.random(radius + offset, 700f - radius - offset);
-            Circle circle = new Circle(x, y, radius);
-            boolean overlaps = false;
-            for (int j = 0; j < planets.size; j++) {
-                if (planets.get(j).circle.overlaps(circle)) {
-                    overlaps = true;
-                }
-            }
-            if (overlaps) {
-                i--;
-            } else {
-                planets.add(new Planet(circle));
+            float x = MathUtils.random(radius + PLANET_HALF_THICKNESS, 1200f - radius - PLANET_HALF_THICKNESS);
+            float y = MathUtils.random(radius + PLANET_HALF_THICKNESS, 700f - radius - PLANET_HALF_THICKNESS);
+            circle = new Circle(x, y, radius);
+            overlaps = overlapsPlanets(circle);
+        } while (overlaps);
+        planets.add(new Planet(circle));
+    }
+
+    private boolean overlapsPlanets(Circle circle) {
+        for (int i = 0; i < planets.size; i++) {
+            if (planets.get(i).circle.overlaps(circle)) {
+                return true;
             }
         }
+        return false;
     }
 }

@@ -7,6 +7,7 @@ public class GameLogic extends Logic {
     public GameLogic() {
         registerHandler(new CameraHandler());
         registerHandler(new PlanetSpawner());
+        registerHandler(new PlanetSelector());
         registerHandler(new InitCoordinator()); // Always register at the end
     }
 

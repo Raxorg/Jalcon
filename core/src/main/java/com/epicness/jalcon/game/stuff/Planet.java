@@ -2,6 +2,7 @@ package com.epicness.jalcon.game.stuff;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.epicness.fundamentals.rendering.ShapeDrawerPlus;
@@ -33,6 +34,10 @@ public class Planet implements Drawable2D {
 
     }
 
+    public boolean contains(float x, float y) {
+        return circle.contains(x, y);
+    }
+
     public boolean overlaps(CirclePlus circle) {
         return CollisionUtils.overlaps(this.circle, circle);
     }
@@ -43,5 +48,9 @@ public class Planet implements Drawable2D {
 
     public void setShips(int ships) {
         this.ships = ships;
+    }
+
+    public void setColor(Color color) {
+        circle.setBorderColor(color);
     }
 }

@@ -2,6 +2,8 @@ package com.epicness.jalcon.game.logic;
 
 import static com.epicness.fundamentals.constants.SharedConstants.VIEWPORT_HEIGHT;
 import static com.epicness.fundamentals.constants.SharedConstants.VIEWPORT_WIDTH;
+import static com.epicness.jalcon.game.GameConstants.MAX_PLANET_RADIUS;
+import static com.epicness.jalcon.game.GameConstants.MIN_PLANET_RADIUS;
 import static com.epicness.jalcon.game.GameConstants.PLANET_HALF_THICKNESS;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -26,7 +28,7 @@ public class PlanetSpawner extends GameLogicHandler {
 
     private void spawnRandomPlanet() {
         CirclePlus circle = new CirclePlus();
-        float radius = MathUtils.random(10f, 50f);
+        float radius = MathUtils.random(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
         boolean overlaps;
         do {
             float x = MathUtils.random(PLANET_HALF_THICKNESS, VIEWPORT_WIDTH - radius * 2f - PLANET_HALF_THICKNESS);
@@ -35,7 +37,10 @@ public class PlanetSpawner extends GameLogicHandler {
             circle.setRadius(radius);
             overlaps = overlapsPlanets(circle);
         } while (overlaps);
-        planets.add(new Planet(circle, sharedAssets.getPixelFont()));
+        float productionInterval = MathUtils.map(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS, 1f, 0.3f, radius);
+        Planet planet = new Planet(circle, sharedAssets.getPixelFont(), productionInterval);
+        planet.setFontScale(2.5f);
+        planets.add(planet);
     }
 
     private boolean overlapsPlanets(CirclePlus circle) {

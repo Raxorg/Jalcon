@@ -16,11 +16,19 @@ public class Planet implements Drawable2D {
     private final CirclePlus circle;
     private final Text shipCount;
     private int ships;
+    public final float productionInterval;
+    private float productionTime;
 
-    public Planet(CirclePlus circlePlus, BitmapFont font) {
+    public Planet(CirclePlus circlePlus, BitmapFont font, float productionInterval) {
         circle = circlePlus;
         circle.setFillColor(CLEAR);
         shipCount = new Text(font);
+        shipCount.setPosition(circle.getCenterX(), circle.getCenterY());
+        shipCount.hAlignCenter();
+        shipCount.setVerticallyCentered(true);
+        shipCount.setWrapWidth(0f);
+        this.productionInterval = productionInterval;
+        setShips(5);
     }
 
     @Override
@@ -42,15 +50,28 @@ public class Planet implements Drawable2D {
         return CollisionUtils.overlaps(this.circle, circle);
     }
 
+    public void setFontScale(float scale) {
+        shipCount.setScale(scale);
+    }
+
+    public void setColor(Color color) {
+        circle.setBorderColor(color);
+    }
+
     public int getShips() {
         return ships;
     }
 
     public void setShips(int ships) {
         this.ships = ships;
+        shipCount.setText(String.valueOf(ships));
     }
 
-    public void setColor(Color color) {
-        circle.setBorderColor(color);
+    public float getProductionTime() {
+        return productionTime;
+    }
+
+    public void setProductionTime(float productionTime) {
+        this.productionTime = productionTime;
     }
 }

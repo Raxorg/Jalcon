@@ -18,6 +18,7 @@ public class Planet implements Drawable2D {
     private int ships;
     public final float productionInterval;
     private float productionTime;
+    private boolean producing;
 
     public Planet(CirclePlus circlePlus, BitmapFont font, float productionInterval) {
         circle = circlePlus;
@@ -54,8 +55,16 @@ public class Planet implements Drawable2D {
         shipCount.setScale(scale);
     }
 
-    public void setColor(Color color) {
+    public void setFontColor(Color color) {
+        shipCount.setColor(color);
+    }
+
+    public void setBorderColor(Color color) {
         circle.setBorderColor(color);
+    }
+
+    public void setFillColor(Color color) {
+        circle.setFillColor(color);
     }
 
     public int getShips() {
@@ -73,5 +82,13 @@ public class Planet implements Drawable2D {
 
     public void setProductionTime(float productionTime) {
         this.productionTime = productionTime;
+    }
+
+    public boolean isProducing() {
+        return producing;
+    }
+
+    public void setProducing(boolean producing) {
+        this.producing = producing;
     }
 }

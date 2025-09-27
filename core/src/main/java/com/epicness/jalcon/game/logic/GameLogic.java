@@ -11,6 +11,8 @@ public class GameLogic extends Logic {
         registerHandler(new PlanetSpawner());
         registerHandler(planetProductionHandler = new PlanetProductionHandler());
         registerHandler(new PlanetSelector());
+        registerHandler(new PlayerSpawner());
+
         registerHandler(new InitCoordinator()); // Always register at the end
     }
 

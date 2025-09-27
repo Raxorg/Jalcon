@@ -19,13 +19,13 @@ public class PlanetSelector extends GameLogicHandler{
 
     @Override
     public void mouseMovedDynamic(float x, float y) {
-        if (lastSelectedPlanet != null && !lastSelectedPlanet.contains(x, y)) lastSelectedPlanet.setColor(WHITE);
+        if (lastSelectedPlanet != null && !lastSelectedPlanet.contains(x, y)) lastSelectedPlanet.setBorderColor(WHITE);
 
         Planet planet;
         for (int i = 0; i < planets.size; i++) {
             planet = planets.get(i);
             if (planet.contains(x, y)) {
-                planet.setColor(GREEN);
+                planet.setBorderColor(GREEN);
                 lastSelectedPlanet = planet;
                 return;
             }

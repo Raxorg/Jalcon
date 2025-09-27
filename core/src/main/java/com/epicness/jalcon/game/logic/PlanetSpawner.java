@@ -1,5 +1,6 @@
 package com.epicness.jalcon.game.logic;
 
+import static com.badlogic.gdx.graphics.Color.GRAY;
 import static com.epicness.fundamentals.constants.SharedConstants.VIEWPORT_HEIGHT;
 import static com.epicness.fundamentals.constants.SharedConstants.VIEWPORT_WIDTH;
 import static com.epicness.jalcon.game.GameConstants.MAX_PLANET_RADIUS;
@@ -40,6 +41,8 @@ public class PlanetSpawner extends GameLogicHandler {
         float productionInterval = MathUtils.map(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS, 1f, 0.3f, radius);
         Planet planet = new Planet(circle, sharedAssets.getPixelFont(), productionInterval);
         planet.setFontScale(2.5f);
+        planet.setFontColor(GRAY);
+        planet.setProducing(false);
         planets.add(planet);
     }
 

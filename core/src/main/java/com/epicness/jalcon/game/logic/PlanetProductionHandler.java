@@ -17,6 +17,8 @@ public class PlanetProductionHandler extends GameLogicHandler {
     @Override
     protected void update(float delta) {
         loopArray(planets, planet -> {
+            if (!planet.isProducing()) return;
+
             float newProductionTime = planet.getProductionTime() + delta;
             if (newProductionTime >= planet.productionInterval) {
                 planet.setShips(planet.getShips() + 1);

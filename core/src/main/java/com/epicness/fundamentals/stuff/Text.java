@@ -15,6 +15,7 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
 
     private final BitmapFont font;
     private String text;
+    private float scale;
     private boolean verticallyCentered, wrap;
     private float yOffset;
     private int hAlign;
@@ -25,6 +26,7 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
     public Text(BitmapFont font, String text) {
         this.font = font;
         this.text = text;
+        scale = 1f;
         hAlign = Align.left;
         bounds = new Rectangle();
         bounds.width = 500f;
@@ -39,6 +41,8 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
     @Override
     public void draw(SpriteBatch spriteBatch) {
         font.setColor(color);
+        font.getData().setScale(scale);
+
         font.draw(
             spriteBatch,
             text,
@@ -122,6 +126,10 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
         yOffset = centered ? bounds.height * 0.5f : 0f;
     }
 
+    public boolean isWrap() {
+        return wrap;
+    }
+
     public void setWrap(boolean wrap) {
         this.wrap = wrap;
     }
@@ -136,11 +144,11 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
     }
 
     public float getScale() {
-        return font.getScaleX();
+        return scale;
     }
 
     public void setScale(float scale) {
-        font.getData().setScale(scale);
+        this.scale = scale;
         updateBounds();
     }
 
@@ -152,15 +160,15 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
         this.color.set(color);
     }
 
-    public float getWidth() {
+    public float getWrapWidth() {
         return bounds.width;
     }
 
-    public void setWidth(float width) {
+    public void setWrapWidth(float width) {
         bounds.width = width;
     }
 
-    public float getPlainWidth() {
+    public float getWidth() {
         return TextUtils.getTextWidth(this);
     }
 
@@ -169,7 +177,10 @@ public class Text implements Buttonable, SpriteBatchDrawable, Movable {
     }
 
     private void updateBounds() {
+        float originalScale = font.getScaleX();
+        font.getData().setScale(scale);
         bounds.height = TextUtils.getTextHeight(this);
+        font.getData().setScale(originalScale);
         yOffset = verticallyCentered ? bounds.height * 0.5f : 0f;
     }
 }

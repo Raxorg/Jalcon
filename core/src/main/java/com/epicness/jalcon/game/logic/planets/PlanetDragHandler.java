@@ -1,7 +1,6 @@
 package com.epicness.jalcon.game.logic.planets;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
-import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.SnapshotArray;
@@ -56,13 +55,15 @@ public class PlanetDragHandler extends GameLogicHandler {
             dragLine.setColor(CLEAR);
             return;
         }
-        dragLine.setColor(WHITE);
+        dragLine.setColorA(player.getColor());
+        dragLine.setColorB(CLEAR);
 
         targetPlanet = null;
         for (int i = 0; i < planets.size; i++) {
             Planet planet = planets.get(i);
             if (planet != sourcePlanet && planet.contains(x, y)) {
                 targetPlanet = planet;
+                dragLine.setColorB(targetPlanet.getPlanetColor());
                 break;
             }
         }

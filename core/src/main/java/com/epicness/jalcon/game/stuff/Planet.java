@@ -78,6 +78,10 @@ public class Planet implements Drawable2D {
         selector.setBorderColor(color);
     }
 
+    public Color getPlanetColor() {
+        return sprite.getColor();
+    }
+
     public void setPlanetColor(Color color) {
         sprite.setColor(color);
     }

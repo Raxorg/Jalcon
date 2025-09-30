@@ -24,16 +24,16 @@ public class ShaderTester extends GameLogicHandler {
     public void keyDown(int keycode) {
         switch (keycode) {
             case NUM_1:
-                renderer.setBlurRadius(5f);
+                renderer.setBlurRadius(0.5f);
                 break;
             case NUM_2:
-                renderer.setBlurRadius(10f);
+                renderer.setBlurRadius(1f);
                 break;
             case NUM_3:
-                renderer.setBlurRadius(15f);
+                renderer.setBlurRadius(1.5f);
                 break;
             case NUM_4:
-                renderer.setBlurRadius(20f);
+                renderer.setBlurRadius(2f);
                 break;
             case Q:
                 horizontalBlur.setShaderProgram(assets.getHorizontalBlur4());

@@ -1,5 +1,7 @@
 package com.epicness.jalcon.game.logic.ships;
 
+import static com.epicness.jalcon.game.GameConstants.SHIP_SPEED;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.jalcon.game.logic.GameLogicHandler;
@@ -38,8 +40,7 @@ public class ShipMover extends GameLogicHandler {
             float angle = direction.angleDeg();
             ship.setAngle(angle - 90f);
 
-            float speed = 25f;
-            float moveDistance = speed * delta;
+            float moveDistance = SHIP_SPEED * delta;
             // Don't overshoot the target
             if (moveDistance > distance) {
                 moveDistance = distance;

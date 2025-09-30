@@ -19,4 +19,5 @@ public class GameConstants {
     public static final float SHIP_HEIGHT = 12.5f;
     public static final float SHIP_HALF_WIDTH = SHIP_WIDTH * 0.5f;
     public static final float SHIP_HALF_HEIGHT = SHIP_HEIGHT * 0.5f;
+    public static final float SHIP_SPEED = 50f;
 }

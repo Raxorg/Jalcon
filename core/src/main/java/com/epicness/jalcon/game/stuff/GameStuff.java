@@ -25,8 +25,8 @@ public class GameStuff extends Stuff<GameAssets> {
         ships = new SnapshotArray<>();
 
         players = new SnapshotArray<>();
-        horizontalBlur = new Shader(assets.getHorizontalBlur4());
-        verticalBlur = new Shader(assets.getVerticalBlur4());
+        horizontalBlur = new Shader(assets.getHorizontalBlur8());
+        verticalBlur = new Shader(assets.getVerticalBlur8());
     }
 
     public SpritePlus getBackground() {

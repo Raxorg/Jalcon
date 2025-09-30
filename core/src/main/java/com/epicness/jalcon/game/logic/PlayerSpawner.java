@@ -1,6 +1,7 @@
 package com.epicness.jalcon.game.logic;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
+import static com.badlogic.gdx.graphics.Color.ORANGE;
 import static com.badlogic.gdx.graphics.Color.WHITE;
 import static com.epicness.jalcon.game.GameConstants.JALCON_MINT;
 import static com.epicness.jalcon.game.GameConstants.JALCON_PERIWINKLE;
@@ -14,11 +15,15 @@ import com.epicness.jalcon.game.stuff.Player;
 
 public class PlayerSpawner extends GameLogicHandler {
 
+    private PlanetOwnershipHandler ownershipHandler;
+
     private SnapshotArray<Player> players;
     private SnapshotArray<Planet> planets;
 
     @Override
     protected void init() {
+        ownershipHandler = get(PlanetOwnershipHandler.class);
+
         players = stuff.getPlayers();
         planets = stuff.getPlanets();
     }
@@ -29,15 +34,17 @@ public class PlayerSpawner extends GameLogicHandler {
         Player yellow = new Player(JALCON_YELLOW);
         Player salmon = new Player(JALCON_SALMON);
         Player mint = new Player(JALCON_MINT);
-        players.addAll(periwinkle, purple, yellow, salmon, mint);
+        Player orange = new Player(ORANGE);
+        players.addAll(periwinkle, purple, yellow, salmon, mint, orange);
 
-        planets.get(0).setPlanetAndBGColor(JALCON_PERIWINKLE);
-        planets.get(1).setPlanetAndBGColor(JALCON_PURPLE);
-        planets.get(2).setPlanetAndBGColor(JALCON_YELLOW);
-        planets.get(3).setPlanetAndBGColor(JALCON_SALMON);
-        planets.get(4).setPlanetAndBGColor(JALCON_MINT);
+        ownershipHandler.setOwner(planets.get(0), periwinkle);
+        ownershipHandler.setOwner(planets.get(1), purple);
+        ownershipHandler.setOwner(planets.get(2), yellow);
+        ownershipHandler.setOwner(planets.get(3), salmon);
+        ownershipHandler.setOwner(planets.get(4), mint);
+        ownershipHandler.setOwner(planets.get(5), orange);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             planets.get(i).setFontColor(CLEAR);
             planets.get(i).setProducing(true);
         }

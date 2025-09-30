@@ -6,5 +6,6 @@ public class InitCoordinator extends GameLogicHandler {
     protected void init() {
         get(PlanetSpawner.class).spawnPlanets();
         get(PlayerSpawner.class).spawnPlayers();
+        get(DragHandler.class).identifyPlayer();
     }
 }

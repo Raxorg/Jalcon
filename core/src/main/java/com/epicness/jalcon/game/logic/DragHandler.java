@@ -7,25 +7,37 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.Line;
 import com.epicness.jalcon.game.stuff.Planet;
+import com.epicness.jalcon.game.stuff.Player;
 
 public class DragHandler extends GameLogicHandler {
 
+    private PlanetOwnershipHandler ownershipHandler;
+
+    private Player player;
     private SnapshotArray<Planet> planets;
-    private Planet sourcePlanet, targetPlanet;
     private Line dragLine;
+
+    private Planet sourcePlanet, targetPlanet;
     private Vector2 auxVector;
 
     @Override
     protected void init() {
+        ownershipHandler = get(PlanetOwnershipHandler.class);
+
         planets = stuff.getPlanets();
         dragLine = stuff.getDragLine();
+
         auxVector = new Vector2();
+    }
+
+    public void identifyPlayer() {
+        player = stuff.getPlayers().first();
     }
 
     @Override
     public void touchDown(float x, float y, int button) {
         for (Planet planet : planets) {
-            if (planet.contains(x, y)) {
+            if (ownershipHandler.isOwner(player, planet) && planet.contains(x, y)) {
                 sourcePlanet = planet;
                 return;
             }

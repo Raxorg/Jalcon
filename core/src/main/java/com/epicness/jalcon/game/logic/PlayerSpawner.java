@@ -1,5 +1,6 @@
 package com.epicness.jalcon.game.logic;
 
+import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.badlogic.gdx.graphics.Color.WHITE;
 import static com.epicness.jalcon.game.GameConstants.JALCON_MINT;
 import static com.epicness.jalcon.game.GameConstants.JALCON_PERIWINKLE;
@@ -37,8 +38,9 @@ public class PlayerSpawner extends GameLogicHandler {
         planets.get(4).setPlanetAndBGColor(JALCON_MINT);
 
         for (int i = 0; i < 5; i++) {
-            planets.get(i).setFontColor(WHITE);
+            planets.get(i).setFontColor(CLEAR);
             planets.get(i).setProducing(true);
         }
+        planets.get(0).setFontColor(WHITE);
     }
 }

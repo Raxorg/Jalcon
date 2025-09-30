@@ -2,10 +2,13 @@ package com.epicness.jalcon.game.assets;
 
 import static com.epicness.jalcon.game.assets.GameAssetPaths.*;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.epicness.fundamentals.assets.Assets;
 
 public class GameAssets extends Assets {
+    private Music musicLobby;
+
     private Sprite planet1;
 
     private Sprite planet2;
@@ -20,10 +23,15 @@ public class GameAssets extends Assets {
 
     @Override
     public void initializeAssets() {
+        musicLobby = get(MUSICLOBBY_MUSIC);
         planet1 = get(PLANET1_SPRITE);
         planet2 = get(PLANET2_SPRITE);
         ship = get(SHIP_SPRITE);
         starfield = get(STARFIELD_SPRITE);
+    }
+
+    public Music getMusicLobby() {
+        return musicLobby;
     }
 
     public Sprite getPlanet1() {

@@ -11,5 +11,6 @@ public class InitCoordinator extends GameLogicHandler {
         get(PlanetSpawner.class).spawnPlanets();
         get(PlayerSpawner.class).spawnPlayers();
         get(PlanetDragHandler.class).identifyPlayer();
+        assets.getMusicLobby().play();
     }
 }

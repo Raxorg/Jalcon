@@ -4,6 +4,7 @@ import static com.epicness.jalcon.game.assets.GameAssetPaths.*;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.epicness.fundamentals.assets.Assets;
 
 public class GameAssets extends Assets {
@@ -17,6 +18,14 @@ public class GameAssets extends Assets {
 
     private Sprite starfield;
 
+    private ShaderProgram horizontalBlur4;
+
+    private ShaderProgram horizontalBlur8;
+
+    private ShaderProgram verticalBlur4;
+
+    private ShaderProgram verticalBlur8;
+
     public GameAssets() {
         super(ASSETS);
     }
@@ -28,6 +37,10 @@ public class GameAssets extends Assets {
         planet2 = get(PLANET2_SPRITE);
         ship = get(SHIP_SPRITE);
         starfield = get(STARFIELD_SPRITE);
+        horizontalBlur4 = get(HORIZONTALBLUR4_SHADER_PROGRAM);
+        horizontalBlur8 = get(HORIZONTALBLUR8_SHADER_PROGRAM);
+        verticalBlur4 = get(VERTICALBLUR4_SHADER_PROGRAM);
+        verticalBlur8 = get(VERTICALBLUR8_SHADER_PROGRAM);
     }
 
     public Music getMusicLobby() {
@@ -48,5 +61,21 @@ public class GameAssets extends Assets {
 
     public Sprite getStarfield() {
         return starfield;
+    }
+
+    public ShaderProgram getHorizontalBlur4() {
+        return horizontalBlur4;
+    }
+
+    public ShaderProgram getHorizontalBlur8() {
+        return horizontalBlur8;
+    }
+
+    public ShaderProgram getVerticalBlur4() {
+        return verticalBlur4;
+    }
+
+    public ShaderProgram getVerticalBlur8() {
+        return verticalBlur8;
     }
 }

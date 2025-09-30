@@ -92,6 +92,10 @@ public class CirclePlus implements Transformable, Buttonable, ShapeDrawable {
         this(5f, color);
     }
 
+    public CirclePlus(CirclePlus circle) {
+        this(circle.x, circle.y, circle.radius, circle.borderColor, circle.fillColor, circle.thickness);
+    }
+
     public CirclePlus() {
         this(5f);
     }

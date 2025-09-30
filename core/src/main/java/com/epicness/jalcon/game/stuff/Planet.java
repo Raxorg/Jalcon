@@ -16,33 +16,41 @@ import com.epicness.fundamentals.utils.CollisionUtils;
 public class Planet implements Drawable2D {
 
     private final SpritePlus sprite;
-    private final CirclePlus circle;
+    private final CirclePlus background, selector;
     private final Text shipCount;
     private int ships;
     public final float productionInterval;
     private float productionTime;
     private boolean producing;
 
-    public Planet(Sprite planetSprite, CirclePlus circlePlus, BitmapFont font, float productionInterval) {
+    public Planet(Sprite planetSprite, CirclePlus circle, BitmapFont font, float productionInterval) {
         sprite = new SpritePlus(planetSprite);
-        sprite.setSize(circlePlus.getRadius() * 2f);
-        sprite.setPosition(circlePlus.getX(), circlePlus.getY());
-        circle = circlePlus;
-        circle.setFillColor(CLEAR);
+        sprite.setSize(circle.getRadius() * 2f - 5f);
+        sprite.setPosition(circle.getX() + 2.5f, circle.getY() + 2.5f);
+
+        background = circle;
+
+        selector = new CirclePlus(circle);
+        selector.setRadius(circle.getRadius() + 7f);
+        selector.translate(-7f, -7f);
+        selector.setColor(CLEAR);
+
         shipCount = new Text(font);
-        shipCount.setPosition(circle.getCenterX(), circle.getCenterY());
+        shipCount.setPosition(background.getCenterX(), background.getCenterY());
         shipCount.hAlignCenter();
         shipCount.setVerticallyCentered(true);
         shipCount.setWrapWidth(0f);
+
         this.productionInterval = productionInterval;
         setShips(5);
     }
 
     @Override
     public void draw(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer) {
+        background.draw(shapeDrawer);
         sprite.draw(spriteBatch);
-        circle.draw(shapeDrawer);
         shipCount.draw(spriteBatch);
+        selector.draw(shapeDrawer);
     }
 
     @Override
@@ -51,11 +59,11 @@ public class Planet implements Drawable2D {
     }
 
     public boolean contains(float x, float y) {
-        return circle.contains(x, y);
+        return background.contains(x, y);
     }
 
     public boolean overlaps(CirclePlus circle) {
-        return CollisionUtils.overlaps(this.circle, circle);
+        return CollisionUtils.overlaps(this.background, circle);
     }
 
     public void setFontScale(float scale) {
@@ -66,12 +74,21 @@ public class Planet implements Drawable2D {
         shipCount.setColor(color);
     }
 
-    public void setBorderColor(Color color) {
-        circle.setBorderColor(color);
+    public void setSelectorColor(Color color) {
+        selector.setBorderColor(color);
     }
 
     public void setPlanetColor(Color color) {
         sprite.setColor(color);
+    }
+
+    public void setBackgroundColor(Color color) {
+        background.setColor(color);
+    }
+
+    public void setPlanetAndBGColor(Color color) {
+        setPlanetColor(color);
+        setBackgroundColor(color);
     }
 
     public int getShips() {
@@ -100,14 +117,14 @@ public class Planet implements Drawable2D {
     }
 
     public float getCenterX() {
-        return circle.getCenterX();
+        return background.getCenterX();
     }
 
     public float getCenterY() {
-        return circle.getCenterY();
+        return background.getCenterY();
     }
 
     public float getRadius() {
-        return circle.getRadius();
+        return background.getRadius();
     }
 }

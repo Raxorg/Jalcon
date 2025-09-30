@@ -43,7 +43,7 @@ public class PlanetSpawner extends GameLogicHandler {
         Sprite planetSprite = MathUtils.randomBoolean() ? assets.getPlanet1() : assets.getPlanet2();
         Planet planet = new Planet(planetSprite, circle, sharedAssets.getPixelFont(), productionInterval);
         planet.setFontScale(2.5f);
-        planet.setFontColor(GRAY);
+        planet.setBackgroundColor(GRAY);
         planet.setProducing(false);
         planets.add(planet);
     }

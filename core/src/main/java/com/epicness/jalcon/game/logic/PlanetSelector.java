@@ -1,12 +1,12 @@
 package com.epicness.jalcon.game.logic;
 
+import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.badlogic.gdx.graphics.Color.GREEN;
-import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.jalcon.game.stuff.Planet;
 
-public class PlanetSelector extends GameLogicHandler{
+public class PlanetSelector extends GameLogicHandler {
 
     private SnapshotArray<Planet> planets;
     private Planet lastSelectedPlanet;
@@ -19,16 +19,21 @@ public class PlanetSelector extends GameLogicHandler{
 
     @Override
     public void mouseMovedDynamic(float x, float y) {
-        if (lastSelectedPlanet != null && !lastSelectedPlanet.contains(x, y)) lastSelectedPlanet.setBorderColor(WHITE);
+        if (lastSelectedPlanet != null && !lastSelectedPlanet.contains(x, y)) lastSelectedPlanet.setSelectorColor(CLEAR);
 
         Planet planet;
         for (int i = 0; i < planets.size; i++) {
             planet = planets.get(i);
             if (planet.contains(x, y)) {
-                planet.setBorderColor(GREEN);
+                planet.setSelectorColor(GREEN);
                 lastSelectedPlanet = planet;
                 return;
             }
         }
+    }
+
+    @Override
+    public void touchDragged(float x, float y) {
+        mouseMovedDynamic(x, y);
     }
 }

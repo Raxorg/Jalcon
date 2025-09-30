@@ -1,4 +1,4 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.other;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.badlogic.gdx.graphics.Color.ORANGE;
@@ -10,6 +10,8 @@ import static com.epicness.jalcon.game.GameConstants.JALCON_SALMON;
 import static com.epicness.jalcon.game.GameConstants.JALCON_YELLOW;
 
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
+import com.epicness.jalcon.game.logic.planets.PlanetOwnershipHandler;
 import com.epicness.jalcon.game.stuff.Planet;
 import com.epicness.jalcon.game.stuff.Player;
 

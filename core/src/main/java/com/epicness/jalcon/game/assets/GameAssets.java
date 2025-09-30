@@ -10,6 +10,8 @@ public class GameAssets extends Assets {
 
     private Sprite planet2;
 
+    private Sprite ship;
+
     private Sprite starfield;
 
     public GameAssets() {
@@ -20,6 +22,7 @@ public class GameAssets extends Assets {
     public void initializeAssets() {
         planet1 = get(PLANET1_SPRITE);
         planet2 = get(PLANET2_SPRITE);
+        ship = get(SHIP_SPRITE);
         starfield = get(STARFIELD_SPRITE);
     }
 
@@ -29,6 +32,10 @@ public class GameAssets extends Assets {
 
     public Sprite getPlanet2() {
         return planet2;
+    }
+
+    public Sprite getShip() {
+        return ship;
     }
 
     public Sprite getStarfield() {

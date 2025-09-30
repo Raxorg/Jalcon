@@ -1,4 +1,4 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.planets;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.badlogic.gdx.graphics.Color.WHITE;
@@ -6,11 +6,14 @@ import static com.badlogic.gdx.graphics.Color.WHITE;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.Line;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
+import com.epicness.jalcon.game.logic.ships.ShipSpawner;
 import com.epicness.jalcon.game.stuff.Planet;
 import com.epicness.jalcon.game.stuff.Player;
 
-public class DragHandler extends GameLogicHandler {
+public class PlanetDragHandler extends GameLogicHandler {
 
+    private ShipSpawner shipSpawner;
     private PlanetOwnershipHandler ownershipHandler;
 
     private Player player;
@@ -22,6 +25,7 @@ public class DragHandler extends GameLogicHandler {
 
     @Override
     protected void init() {
+        shipSpawner = get(ShipSpawner.class);
         ownershipHandler = get(PlanetOwnershipHandler.class);
 
         planets = stuff.getPlanets();
@@ -72,8 +76,10 @@ public class DragHandler extends GameLogicHandler {
 
     @Override
     public void touchUp(float x, float y, int button) {
+        if (sourcePlanet != null && targetPlanet != null && targetPlanet.contains(x, y)) {
+            shipSpawner.spawnShips(sourcePlanet);
+        }
         sourcePlanet = null;
-        targetPlanet = null;
         dragLine.setColor(CLEAR);
     }
 

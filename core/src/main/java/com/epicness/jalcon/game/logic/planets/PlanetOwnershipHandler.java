@@ -1,5 +1,6 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.planets;
 
+import com.epicness.jalcon.game.logic.GameLogicHandler;
 import com.epicness.jalcon.game.stuff.Planet;
 import com.epicness.jalcon.game.stuff.Player;
 
@@ -21,5 +22,9 @@ public class PlanetOwnershipHandler extends GameLogicHandler {
 
     public boolean isOwner(Player player, Planet planet) {
         return ownershipMap.get(planet) == player;
+    }
+
+    public Player getOwner(Planet planet) {
+        return ownershipMap.get(planet);
     }
 }

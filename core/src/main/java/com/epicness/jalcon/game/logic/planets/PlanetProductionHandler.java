@@ -1,8 +1,9 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.planets;
 
 import static com.epicness.fundamentals.utils.ArrayUtils.loopArray;
 
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
 import com.epicness.jalcon.game.stuff.Planet;
 
 public class PlanetProductionHandler extends GameLogicHandler {
@@ -21,7 +22,7 @@ public class PlanetProductionHandler extends GameLogicHandler {
 
             float newProductionTime = planet.getProductionTime() + delta;
             if (newProductionTime >= planet.productionInterval) {
-                planet.setShips(planet.getShips() + 1);
+                planet.setShipCount(planet.getShipCount() + 1);
                 newProductionTime -= planet.productionInterval;
             }
             planet.setProductionTime(newProductionTime);

@@ -1,4 +1,4 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.planets;
 
 import static com.badlogic.gdx.graphics.Color.GRAY;
 import static com.epicness.fundamentals.constants.SharedConstants.VIEWPORT_HEIGHT;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.CirclePlus;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
 import com.epicness.jalcon.game.stuff.Planet;
 
 public class PlanetSpawner extends GameLogicHandler {

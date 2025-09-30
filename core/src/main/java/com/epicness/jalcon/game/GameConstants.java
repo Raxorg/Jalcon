@@ -14,4 +14,9 @@ public class GameConstants {
     public static final Color JALCON_YELLOW = new Color(0xFFFF00FF);
     public static final Color JALCON_SALMON = new Color(0xCA9194FF);
     public static final Color JALCON_MINT = new Color(0xB1E8B8FF);
+
+    public static final float SHIP_WIDTH = 10f;
+    public static final float SHIP_HEIGHT = 12.5f;
+    public static final float SHIP_HALF_WIDTH = SHIP_WIDTH * 0.5f;
+    public static final float SHIP_HALF_HEIGHT = SHIP_HEIGHT * 0.5f;
 }

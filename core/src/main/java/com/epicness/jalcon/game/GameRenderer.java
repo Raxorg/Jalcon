@@ -20,6 +20,7 @@ public class GameRenderer extends Renderer<GameStuff> {
         useDynamicCamera();
         drawArray(stuff.getPlanets());
         stuff.getDragLine().draw(shapeDrawer);
+        drawArray(stuff.getShips());
         spriteBatch.end();
     }
 }

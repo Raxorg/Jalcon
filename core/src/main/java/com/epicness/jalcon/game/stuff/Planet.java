@@ -17,8 +17,8 @@ public class Planet implements Drawable2D {
 
     private final SpritePlus sprite;
     private final CirclePlus background, selector;
-    private final Text shipCount;
-    private int ships;
+    private final Text shipsText;
+    private int shipCount;
     public final float productionInterval;
     private float productionTime;
     private boolean producing;
@@ -35,21 +35,21 @@ public class Planet implements Drawable2D {
         selector.translate(-7f, -7f);
         selector.setColor(CLEAR);
 
-        shipCount = new Text(font);
-        shipCount.setPosition(background.getCenterX(), background.getCenterY());
-        shipCount.hAlignCenter();
-        shipCount.setVerticallyCentered(true);
-        shipCount.setWrapWidth(0f);
+        shipsText = new Text(font);
+        shipsText.setPosition(background.getCenterX(), background.getCenterY());
+        shipsText.hAlignCenter();
+        shipsText.setVerticallyCentered(true);
+        shipsText.setWrapWidth(0f);
 
         this.productionInterval = productionInterval;
-        setShips(5);
+        setShipCount(5);
     }
 
     @Override
     public void draw(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer) {
         background.draw(shapeDrawer);
         sprite.draw(spriteBatch);
-        shipCount.draw(spriteBatch);
+        shipsText.draw(spriteBatch);
         selector.draw(shapeDrawer);
     }
 
@@ -67,11 +67,11 @@ public class Planet implements Drawable2D {
     }
 
     public void setFontScale(float scale) {
-        shipCount.setScale(scale);
+        shipsText.setScale(scale);
     }
 
     public void setFontColor(Color color) {
-        shipCount.setColor(color);
+        shipsText.setColor(color);
     }
 
     public void setSelectorColor(Color color) {
@@ -91,13 +91,13 @@ public class Planet implements Drawable2D {
         setBackgroundColor(color);
     }
 
-    public int getShips() {
-        return ships;
+    public int getShipCount() {
+        return shipCount;
     }
 
-    public void setShips(int ships) {
-        this.ships = ships;
-        shipCount.setText(String.valueOf(ships));
+    public void setShipCount(int shipCount) {
+        this.shipCount = shipCount;
+        shipsText.setText(String.valueOf(shipCount));
     }
 
     public float getProductionTime() {

@@ -1,9 +1,10 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.planets;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.badlogic.gdx.graphics.Color.GREEN;
 
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
 import com.epicness.jalcon.game.stuff.Planet;
 
 public class PlanetSelector extends GameLogicHandler {

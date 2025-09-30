@@ -1,10 +1,11 @@
-package com.epicness.jalcon.game.logic;
+package com.epicness.jalcon.game.logic.other;
 
 import static com.epicness.fundamentals.constants.ColorConstants.PASTEL_PURPLE;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.epicness.fundamentals.stuff.SpritePlus;
+import com.epicness.jalcon.game.logic.GameLogicHandler;
 
 public class BackgroundHandler extends GameLogicHandler {
 

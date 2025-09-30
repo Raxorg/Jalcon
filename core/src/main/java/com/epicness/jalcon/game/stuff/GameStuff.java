@@ -10,13 +10,15 @@ public class GameStuff extends Stuff<GameAssets> {
 
     private SpritePlus background;
     private SnapshotArray<Planet> planets;
-    private SnapshotArray<Player> players;
     private Line dragLine;
+    private SnapshotArray<Ship> ships;
+    private SnapshotArray<Player> players;
 
     @Override
     public void initializeStuff() {
         background = new SpritePlus(assets.getStarfield());
         planets = new SnapshotArray<>();
+        ships = new SnapshotArray<>();
         players = new SnapshotArray<>();
         dragLine = new Line(0f);
     }
@@ -29,11 +31,15 @@ public class GameStuff extends Stuff<GameAssets> {
         return planets;
     }
 
-    public SnapshotArray<Player> getPlayers() {
-        return players;
-    }
-
     public Line getDragLine() {
         return dragLine;
+    }
+
+    public SnapshotArray<Ship> getShips() {
+        return ships;
+    }
+
+    public SnapshotArray<Player> getPlayers() {
+        return players;
     }
 }

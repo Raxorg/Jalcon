@@ -15,7 +15,7 @@ public class Line implements ShapeDrawable, Movable {
 
     private final Vector2 a, b;
     private float angleDeg;
-    public final float length;
+    private float length;
     private final Color colorA, colorB;
     public float thickness;
 
@@ -146,6 +146,28 @@ public class Line implements ShapeDrawable, Movable {
 
     public void setA(Vector2 position) {
         setA(position.x, position.y);
+    }
+
+    public void setB(float x, float y) {
+        b.set(x, y);
+        length = a.dst(b);
+        angleDeg = AngleUtils.degreesBetweenPoints(b, a);
+    }
+
+    public void setB(Vector2 position) {
+        setB(position.x, position.y);
+    }
+
+    public void setPoints(float aX, float aY, float bX, float bY) {
+        a.set(aX, aY);
+        b.set(bX, bY);
+        length = a.dst(b);
+        angleDeg = AngleUtils.degreesBetweenPoints(b, a);
+    }
+
+    public void setLength(float length) {
+        this.length = length;
+        calculateB();
     }
 
     public float getAngleDeg() {

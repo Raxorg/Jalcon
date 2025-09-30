@@ -98,4 +98,16 @@ public class Planet implements Drawable2D {
     public void setProducing(boolean producing) {
         this.producing = producing;
     }
+
+    public float getCenterX() {
+        return circle.getCenterX();
+    }
+
+    public float getCenterY() {
+        return circle.getCenterY();
+    }
+
+    public float getRadius() {
+        return circle.getRadius();
+    }
 }

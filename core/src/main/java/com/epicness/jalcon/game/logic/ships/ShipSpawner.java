@@ -23,16 +23,19 @@ public class ShipSpawner extends GameLogicHandler {
         assets.getShip().getTexture().setFilter(Linear, Linear);
     }
 
-    public void spawnShips(Planet planet) {
-        int quantity = planet.getShipCount() / 2;
-        float centerX = planet.getCenterX() - SHIP_HALF_WIDTH;
-        float centerY = planet.getCenterY() - SHIP_HALF_HEIGHT;
+    public void spawnShips(Planet sourcePlanet, Planet targetPlanet) {
+        int quantity = sourcePlanet.getShipCount() / 2;
+        float centerX = sourcePlanet.getCenterX() - SHIP_HALF_WIDTH;
+        float centerY = sourcePlanet.getCenterY() - SHIP_HALF_HEIGHT;
+        float targetX = targetPlanet.getCenterX();
+        float targetY = targetPlanet.getCenterY();
+
         for (int i = 0; i < quantity; i++) {
             float angle = MathUtils.random(360f);
-            float x = centerX + MathUtils.cosDeg(angle) * planet.getRadius();
-            float y = centerY + MathUtils.sinDeg(angle) * planet.getRadius();
-            Ship ship = new Ship(assets.getShip(), x, y);
-            ship.setColor(ownershipHandler.getOwner(planet).getColor());
+            float x = centerX + MathUtils.cosDeg(angle) * sourcePlanet.getRadius();
+            float y = centerY + MathUtils.sinDeg(angle) * sourcePlanet.getRadius();
+            Ship ship = new Ship(assets.getShip(), x, y, targetX, targetY);
+            ship.setColor(ownershipHandler.getOwner(sourcePlanet).getColor());
             ship.setAngle(angle - 90f);
             ships.add(ship);
         }

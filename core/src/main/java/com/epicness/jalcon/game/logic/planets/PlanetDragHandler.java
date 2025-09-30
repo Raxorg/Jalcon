@@ -77,7 +77,7 @@ public class PlanetDragHandler extends GameLogicHandler {
     @Override
     public void touchUp(float x, float y, int button) {
         if (sourcePlanet != null && targetPlanet != null && targetPlanet.contains(x, y)) {
-            shipSpawner.spawnShips(sourcePlanet);
+            shipSpawner.spawnShips(sourcePlanet, targetPlanet);
         }
         sourcePlanet = null;
         dragLine.setColor(CLEAR);

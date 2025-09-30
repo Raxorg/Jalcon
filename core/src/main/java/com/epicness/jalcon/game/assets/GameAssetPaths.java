@@ -18,6 +18,10 @@ public class GameAssetPaths {
 
     public static final AssetDescriptor<Sprite> SHIP_SPRITE;
 
+    public static final AssetDescriptor<Sprite> SHIP2_SPRITE;
+
+    public static final AssetDescriptor<Sprite> SHIP3_SPRITE;
+
     public static final AssetDescriptor<Sprite> STARFIELD_SPRITE;
 
     public static final AssetDescriptor<ShaderProgram> HORIZONTALBLUR4_SHADER_PROGRAM;
@@ -34,6 +38,8 @@ public class GameAssetPaths {
         ASSETS.add(PLANET1_SPRITE = new AssetDescriptor<>("jalcon/game/images/planet1.png", Sprite.class));
         ASSETS.add(PLANET2_SPRITE = new AssetDescriptor<>("jalcon/game/images/planet2.png", Sprite.class));
         ASSETS.add(SHIP_SPRITE = new AssetDescriptor<>("jalcon/game/images/ship.png", Sprite.class));
+        ASSETS.add(SHIP2_SPRITE = new AssetDescriptor<>("jalcon/game/images/ship2.png", Sprite.class));
+        ASSETS.add(SHIP3_SPRITE = new AssetDescriptor<>("jalcon/game/images/ship3.png", Sprite.class));
         ASSETS.add(STARFIELD_SPRITE = new AssetDescriptor<>("jalcon/game/images/starfield.png", Sprite.class));
         ASSETS.add(HORIZONTALBLUR4_SHADER_PROGRAM = new AssetDescriptor<>("jalcon/game/shaders/horizontalBlur4.sp", ShaderProgram.class));
         ASSETS.add(HORIZONTALBLUR8_SHADER_PROGRAM = new AssetDescriptor<>("jalcon/game/shaders/horizontalBlur8.sp", ShaderProgram.class));

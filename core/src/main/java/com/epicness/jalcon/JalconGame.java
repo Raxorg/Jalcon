@@ -1,6 +1,7 @@
 package com.epicness.jalcon;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.epicness.fundamentals.SharedResources;
 import com.epicness.jalcon.game.GameInitializer;
 import com.epicness.jalcon.game.assets.GameAssets;
@@ -9,6 +10,8 @@ public class JalconGame extends Game {
 
     @Override
     public void create() {
+        ShaderProgram.pedantic = false;
+
         GameAssets assets = new GameAssets();
         assets.queueAssetLoading();
         assets.finishLoading();

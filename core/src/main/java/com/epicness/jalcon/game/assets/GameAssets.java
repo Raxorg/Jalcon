@@ -16,6 +16,10 @@ public class GameAssets extends Assets {
 
     private Sprite ship;
 
+    private Sprite ship2;
+
+    private Sprite ship3;
+
     private Sprite starfield;
 
     private ShaderProgram horizontalBlur4;
@@ -36,6 +40,8 @@ public class GameAssets extends Assets {
         planet1 = get(PLANET1_SPRITE);
         planet2 = get(PLANET2_SPRITE);
         ship = get(SHIP_SPRITE);
+        ship2 = get(SHIP2_SPRITE);
+        ship3 = get(SHIP3_SPRITE);
         starfield = get(STARFIELD_SPRITE);
         horizontalBlur4 = get(HORIZONTALBLUR4_SHADER_PROGRAM);
         horizontalBlur8 = get(HORIZONTALBLUR8_SHADER_PROGRAM);
@@ -57,6 +63,14 @@ public class GameAssets extends Assets {
 
     public Sprite getShip() {
         return ship;
+    }
+
+    public Sprite getShip2() {
+        return ship2;
+    }
+
+    public Sprite getShip3() {
+        return ship3;
     }
 
     public Sprite getStarfield() {

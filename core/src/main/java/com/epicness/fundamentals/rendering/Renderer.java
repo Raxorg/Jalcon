@@ -35,6 +35,9 @@ public abstract class Renderer<S extends Stuff<?>> {
         shapeDrawer = new ShapeDrawerPlus(spriteBatch, new TextureAtlas(SPRITESNEAREST_ATLAS.fileName).createSprite("pixel"));
     }
 
+    public void init() {
+    }
+
     public abstract void render();
 
     public void resize(int width, int height) {

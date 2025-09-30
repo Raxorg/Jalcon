@@ -54,6 +54,7 @@ public abstract class Initializer<A extends Assets, L extends Logic, R extends R
         input.setEnabled(true);
         renderer.useStaticCamera();
         stuff.initializeStuff();
+        renderer.init();
 
         initialized = true;
         sharedResources.registerInitializer(this);

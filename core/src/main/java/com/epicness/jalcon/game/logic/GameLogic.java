@@ -5,6 +5,7 @@ import com.epicness.jalcon.game.logic.other.BackgroundHandler;
 import com.epicness.jalcon.game.logic.other.CameraHandler;
 import com.epicness.jalcon.game.logic.other.InitCoordinator;
 import com.epicness.jalcon.game.logic.other.PlayerSpawner;
+import com.epicness.jalcon.game.logic.other.ShaderTester;
 import com.epicness.jalcon.game.logic.ships.ShipMover;
 import com.epicness.jalcon.game.logic.ships.ShipSpawner;
 import com.epicness.jalcon.game.logic.planets.PlanetDragHandler;
@@ -24,6 +25,7 @@ public class GameLogic extends Logic {
         registerHandler(backgroundHandler = new BackgroundHandler());
         registerHandler(new CameraHandler());
         registerHandler(new PlayerSpawner());
+        registerHandler(new ShaderTester());
         // Planets
         registerHandler(new PlanetDragHandler());
         registerHandler(new PlanetOwnershipHandler());

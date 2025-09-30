@@ -19,7 +19,7 @@ public class Ship implements SpriteBatchDrawable, HasMovable, HasCenter {
     public Ship(Sprite shipSprite, float x, float y, float targetX, float targetY) {
         sprite = new SpritePlus(shipSprite);
         sprite.setPosition(x, y);
-        sprite.setSize(10f, 12.5f);
+        sprite.setSize(13f, 15f);
         sprite.setOriginCenter();
 
         target = new Vector2(targetX, targetY);

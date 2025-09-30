@@ -4,8 +4,10 @@ import static com.badlogic.gdx.graphics.Color.CLEAR;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.epicness.fundamentals.rendering.ShapeDrawerPlus;
+import com.epicness.fundamentals.stuff.SpritePlus;
 import com.epicness.fundamentals.stuff.Text;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.CirclePlus;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.Drawable2D;
@@ -13,6 +15,7 @@ import com.epicness.fundamentals.utils.CollisionUtils;
 
 public class Planet implements Drawable2D {
 
+    private final SpritePlus sprite;
     private final CirclePlus circle;
     private final Text shipCount;
     private int ships;
@@ -20,7 +23,10 @@ public class Planet implements Drawable2D {
     private float productionTime;
     private boolean producing;
 
-    public Planet(CirclePlus circlePlus, BitmapFont font, float productionInterval) {
+    public Planet(Sprite planetSprite, CirclePlus circlePlus, BitmapFont font, float productionInterval) {
+        sprite = new SpritePlus(planetSprite);
+        sprite.setSize(circlePlus.getRadius() * 2f);
+        sprite.setPosition(circlePlus.getX(), circlePlus.getY());
         circle = circlePlus;
         circle.setFillColor(CLEAR);
         shipCount = new Text(font);
@@ -34,6 +40,7 @@ public class Planet implements Drawable2D {
 
     @Override
     public void draw(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer) {
+        sprite.draw(spriteBatch);
         circle.draw(shapeDrawer);
         shipCount.draw(spriteBatch);
     }
@@ -63,8 +70,8 @@ public class Planet implements Drawable2D {
         circle.setBorderColor(color);
     }
 
-    public void setFillColor(Color color) {
-        circle.setFillColor(color);
+    public void setPlanetColor(Color color) {
+        sprite.setColor(color);
     }
 
     public int getShips() {

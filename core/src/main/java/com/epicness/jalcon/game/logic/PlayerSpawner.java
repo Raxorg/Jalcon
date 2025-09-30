@@ -30,11 +30,11 @@ public class PlayerSpawner extends GameLogicHandler {
         Player mint = new Player(JALCON_MINT);
         players.addAll(periwinkle, purple, yellow, salmon, mint);
 
-        planets.get(0).setFillColor(JALCON_PERIWINKLE);
-        planets.get(1).setFillColor(JALCON_PURPLE);
-        planets.get(2).setFillColor(JALCON_YELLOW);
-        planets.get(3).setFillColor(JALCON_SALMON);
-        planets.get(4).setFillColor(JALCON_MINT);
+        planets.get(0).setPlanetColor(JALCON_PERIWINKLE);
+        planets.get(1).setPlanetColor(JALCON_PURPLE);
+        planets.get(2).setPlanetColor(JALCON_YELLOW);
+        planets.get(3).setPlanetColor(JALCON_SALMON);
+        planets.get(4).setPlanetColor(JALCON_MINT);
 
         for (int i = 0; i < 5; i++) {
             planets.get(i).setFontColor(WHITE);

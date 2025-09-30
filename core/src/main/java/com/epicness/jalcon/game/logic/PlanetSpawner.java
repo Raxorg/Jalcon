@@ -7,6 +7,7 @@ import static com.epicness.jalcon.game.GameConstants.MAX_PLANET_RADIUS;
 import static com.epicness.jalcon.game.GameConstants.MIN_PLANET_RADIUS;
 import static com.epicness.jalcon.game.GameConstants.PLANET_HALF_THICKNESS;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.epicness.fundamentals.stuff.shapes.bidimensional.CirclePlus;
@@ -39,7 +40,8 @@ public class PlanetSpawner extends GameLogicHandler {
             overlaps = overlapsPlanets(circle);
         } while (overlaps);
         float productionInterval = MathUtils.map(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS, 1f, 0.3f, radius);
-        Planet planet = new Planet(circle, sharedAssets.getPixelFont(), productionInterval);
+        Sprite planetSprite = MathUtils.randomBoolean() ? assets.getPlanet1() : assets.getPlanet2();
+        Planet planet = new Planet(planetSprite, circle, sharedAssets.getPixelFont(), productionInterval);
         planet.setFontScale(2.5f);
         planet.setFontColor(GRAY);
         planet.setProducing(false);

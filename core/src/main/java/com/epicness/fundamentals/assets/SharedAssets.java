@@ -1,12 +1,6 @@
 package com.epicness.fundamentals.assets;
 
-import static com.epicness.fundamentals.assets.SharedAssetPaths.ASSETS;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.BEEP_SOUND;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.PIXELFONT_FONT;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.SHORTLASER_SOUND;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.SPRITESLINEAR_ATLAS;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.SPRITESNEAREST_ATLAS;
-import static com.epicness.fundamentals.assets.SharedAssetPaths.TIMESSQUARE_FONT;
+import static com.epicness.fundamentals.assets.SharedAssetPaths.*;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

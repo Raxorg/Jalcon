@@ -12,8 +12,12 @@ public class GameRenderer extends Renderer<GameStuff> {
     public void render() {
         ScreenUtils.clear(BLACK);
 
-        useDynamicCamera();
+        useStaticCamera();
         spriteBatch.begin();
+        stuff.getBackground().draw(spriteBatch);
+        spriteBatch.flush();
+
+        useDynamicCamera();
         drawArray(stuff.getPlanets());
         spriteBatch.end();
     }

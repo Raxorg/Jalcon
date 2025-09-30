@@ -4,9 +4,11 @@ import com.epicness.fundamentals.logic.Logic;
 
 public class GameLogic extends Logic {
 
+    private final BackgroundHandler backgroundHandler;
     private final PlanetProductionHandler planetProductionHandler;
 
     public GameLogic() {
+        registerHandler(backgroundHandler = new BackgroundHandler());
         registerHandler(new CameraHandler());
         registerHandler(new PlanetSpawner());
         registerHandler(planetProductionHandler = new PlanetProductionHandler());
@@ -23,5 +25,6 @@ public class GameLogic extends Logic {
 
     @Override
     public void resize(int width, int height) {
+        backgroundHandler.resize(width, height);
     }
 }

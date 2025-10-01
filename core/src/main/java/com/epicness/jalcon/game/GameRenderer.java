@@ -16,14 +16,14 @@ public class GameRenderer extends Renderer<GameStuff> {
 
     private FrameBuffer sceneFBO, downsampleFBO1, downsampleFBO2, horizontalBlurFBO;
     private Shader horizontalBlurShader, verticalBlurShader;
-    private int blurAmount;
     private float blurRadius;
+    private float boost;
 
     public void init() {
         horizontalBlurShader = stuff.getHorizontalBlur();
         verticalBlurShader = stuff.getVerticalBlur();
-        blurAmount = 2;
         blurRadius = 1f;
+        boost = 1.25f;
     }
 
     @Override
@@ -37,12 +37,10 @@ public class GameRenderer extends Renderer<GameStuff> {
         spriteBatch.getProjectionMatrix().setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch.setShader(null);
         spriteBatch.begin();
-        drawFBO(sceneFBO);
+        drawFBO(sceneFBO, true);
         spriteBatch.end();
 
-        if (blurAmount > 0) {
-            renderBlur();
-        }
+        renderBlur();
 
         // 5. Render foreground elements (UI, etc.) on top of everything
         renderStuffOnTop();
@@ -73,57 +71,55 @@ public class GameRenderer extends Renderer<GameStuff> {
         // Downsample from full-res to 1/2 res
         downsampleFBO1.begin();
         spriteBatch.begin();
-        drawFBO(sceneFBO); // Source texture is already flipped from scene render
+        drawFBO(sceneFBO, false); // Source texture is already flipped from scene render
         spriteBatch.end();
         downsampleFBO1.end();
 
-        if (blurAmount > 1) {
-            // Downsample from 1/2 res to 1/4 res
-            downsampleFBO2.begin();
-            spriteBatch.begin();
-            drawFBO(downsampleFBO1);
-            spriteBatch.end();
-            downsampleFBO2.end();
-        }
-
-        FrameBuffer sourceFBO = blurAmount > 1 ? downsampleFBO2 : downsampleFBO1;
+        // Downsample from 1/2 res to 1/4 res
+        downsampleFBO2.begin();
+        spriteBatch.begin();
+        drawFBO(downsampleFBO1, false);
+        spriteBatch.end();
+        downsampleFBO2.end();
 
         // 3. Apply horizontal blur on the smallest FBO
         horizontalBlurFBO.begin();
         spriteBatch.setShader(horizontalBlurShader.getShaderProgram());
         horizontalBlurShader.bind();
-        horizontalBlurShader.setUniformF("u_resolution_x", sourceFBO.getWidth());
+        horizontalBlurShader.setUniformF("u_resolution_x", downsampleFBO2.getWidth());
         horizontalBlurShader.setUniformF("u_radius", blurRadius);
+        horizontalBlurShader.setUniformF("u_boost", boost);
         spriteBatch.begin();
-        drawFBO(sourceFBO);
+        drawFBO(downsampleFBO2, false);
         spriteBatch.end();
         horizontalBlurFBO.end();
 
         // 4. Apply vertical blur and upscale, blending additively onto the screen
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE); // Additive blending for a "bloom" effect
+        spriteBatch.enableBlending();
+        spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE); // Additive blending for a "bloom" effect
 
         spriteBatch.setShader(verticalBlurShader.getShaderProgram());
         verticalBlurShader.bind();
         verticalBlurShader.setUniformF("u_resolution_y", horizontalBlurFBO.getHeight());
         verticalBlurShader.setUniformF("u_radius", blurRadius);
+        verticalBlurShader.setUniformF("u_boost", boost);
         spriteBatch.begin();
         // This final draw goes to the screen, not an FBO
-        drawFBO(horizontalBlurFBO);
+        drawFBO(horizontalBlurFBO, false);
         spriteBatch.end();
 
         // Reset blending and shader
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         spriteBatch.setShader(null);
     }
 
     // Helper method to draw a FBO's texture to the current target
-    private void drawFBO(FrameBuffer fbo) {
+    private void drawFBO(FrameBuffer fbo, boolean flipY) {
         Texture texture = fbo.getColorBufferTexture();
         spriteBatch.draw(
             texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
             0, 0, texture.getWidth(), texture.getHeight(),
-            false, false
+            false, flipY
         );
     }
 
@@ -151,11 +147,6 @@ public class GameRenderer extends Renderer<GameStuff> {
         downsampleFBO1 = new FrameBuffer(Pixmap.Format.RGBA8888, width / 2, height / 2, false);
         downsampleFBO2 = new FrameBuffer(Pixmap.Format.RGBA8888, width / 4, height / 4, false);
         horizontalBlurFBO = new FrameBuffer(Pixmap.Format.RGBA8888, width / 4, height / 4, false);
-    }
-
-    // You can call this to change the blur intensity dynamically
-    public void setBlurAmount(int blurAmount) {
-        this.blurAmount = Math.max(0, Math.min(2, blurAmount));
     }
 
     public void setBlurRadius(float blurRadius) {

@@ -10,6 +10,7 @@ varying vec2 v_texCoord0;
 uniform sampler2D u_sampler2D;
 uniform float u_resolution_y;
 uniform float u_radius;
+uniform float u_boost;
 
 void main() {
     vec2 texelSize = vec2(0.0, 1.0 / u_resolution_y);
@@ -39,5 +40,5 @@ void main() {
     color += texture2D(u_sampler2D, v_texCoord0 - texelSize * 7.0 * u_radius) * 0.00074213;
     color += texture2D(u_sampler2D, v_texCoord0 - texelSize * 8.0 * u_radius) * 0.00013322;
 
-    gl_FragColor = color * v_color;
+    gl_FragColor = color * v_color * u_boost;
 }

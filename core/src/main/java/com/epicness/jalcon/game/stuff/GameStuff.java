@@ -21,7 +21,7 @@ public class GameStuff extends Stuff<GameAssets> {
     public void initializeStuff() {
         background = new SpritePlus(assets.getStarfield());
         planets = new SnapshotArray<>();
-        dragLine = new Line(0f);
+        dragLine = new Line(0f, 4f);
         ships = new SnapshotArray<>();
 
         players = new SnapshotArray<>();

@@ -72,8 +72,12 @@ public class Line implements ShapeDrawable, Movable {
         this(x, y, length, 0f, true);
     }
 
+    public Line(float length, float thickness) {
+        this(length, thickness, new Color(1f, 1f, 1f, 1f));
+    }
+
     public Line(float length) {
-        this(0f, 0f, length);
+        this(length, 5f);
     }
 
     public Line(Line line, float length, float angleDeg) {
